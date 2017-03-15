@@ -3,10 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
+const Logger_1 = require("./utils/Logger");
 // Creates and configures an ExpressJS web server.
 class App {
     //Run configuration methods on the Express instance.
     constructor() {
+        Logger_1.default.debug('Setting up express');
         this.express = express();
         this.middleware();
         this.routes();
@@ -30,6 +32,10 @@ class App {
             });
         });
         this.express.use('/', router);
+        router.get('/api/v1/realms', (req, res, next) => {
+            res.json(['David']);
+        });
+        this.express.use('/api/v1/realms', router);
     }
 }
 exports.default = new App().express;

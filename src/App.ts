@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
+import Logger from './utils/Logger';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -9,11 +10,15 @@ class App {
   // ref to Express instance
   public express: express.Application;
 
+
   //Run configuration methods on the Express instance.
   constructor() {
+    Logger.debug('Setting up express');
     this.express = express();
     this.middleware();
     this.routes();
+    
+    
   }
 
   // Configure Express middleware.
@@ -36,6 +41,12 @@ class App {
       });
     });
     this.express.use('/', router);
+
+    router.get('/api/v1/realms', (req, res, next) => {
+      res.json(['David']);
+
+    });
+    this.express.use('/api/v1/realms', router);
   }
 
 }

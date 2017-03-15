@@ -4,15 +4,15 @@ const JSON_FILES = ['src/*.json', 'src/**/*.json'];
 
 const tsProject = ts.createProject('tsconfig.json');
 
-gulp.task('scripts', () => {
+gulp.task('compile', () => {
   const tsResult = tsProject.src()
   .pipe(tsProject());
   return tsResult.js.pipe(gulp.dest('dist'));
 });
 
 
-gulp.task('watch', ['scripts'], () => {
-  gulp.watch('src/**/*.ts', ['scripts']);
+gulp.task('watch', ['compile'], () => {
+  gulp.watch('src/**/*.ts', ['compile']);
 });
 
 
