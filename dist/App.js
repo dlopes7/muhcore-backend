@@ -3,12 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
-const Logger_1 = require("./utils/Logger");
+const logger_1 = require("./utils/logger");
 // Creates and configures an ExpressJS web server.
 class App {
     //Run configuration methods on the Express instance.
     constructor() {
-        Logger_1.default.debug('Setting up express');
+        logger_1.default.debug('Setting up express');
         this.express = express();
         this.middleware();
         this.routes();

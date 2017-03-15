@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import Logger from './utils/Logger';
+import Logger from './utils/logger';
 
 // Creates and configures an ExpressJS web server.
 class App {

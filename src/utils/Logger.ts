@@ -16,9 +16,11 @@ class Logger{
 
     public debug(msg): void {
         if (logLevels.indexOf(this.level) >= 3){
-            console.log(chalk.gray(`[${moment().toISOString()}] DEBUG: ${msg}`));
-            
+            console.log(chalk.gray(`[${moment().toISOString()}] DEBUG: ${msg}`));  
         }
+    }
+    public error(msg): void {
+            console.log(chalk.red(`[${moment().toISOString()}] DEBUG: ${msg}`));  
     }
 }
 
