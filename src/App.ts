@@ -4,6 +4,8 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import Logger from './utils/logger';
 
+import router from './routes/'
+
 // Creates and configures an ExpressJS web server.
 class App {
 
@@ -15,6 +17,7 @@ class App {
   constructor() {
     Logger.debug('Setting up express');
     this.express = express();
+    this.express.set('json spaces', 2);
     this.middleware();
     this.routes();
     
@@ -30,23 +33,7 @@ class App {
 
   // Configure API endpoints.
   private routes(): void {
-    /* This is just to get up and running, and to make sure what we've got is
-     * working so far. This function will change when we start to add more
-     * API endpoints */
-    let router = express.Router();
-    // placeholder route handler
-    router.get('/', (req, res, next) => {
-      res.json({
-        message: 'Hello World!'
-      });
-    });
     this.express.use('/', router);
-
-    router.get('/api/v1/realms', (req, res, next) => {
-      res.json(['David']);
-
-    });
-    this.express.use('/api/v1/realms', router);
   }
 
 }

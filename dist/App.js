@@ -4,12 +4,14 @@ const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const logger_1 = require("./utils/logger");
+const _1 = require("./routes/");
 // Creates and configures an ExpressJS web server.
 class App {
     //Run configuration methods on the Express instance.
     constructor() {
         logger_1.default.debug('Setting up express');
         this.express = express();
+        this.express.set('json spaces', 2);
         this.middleware();
         this.routes();
     }
@@ -21,21 +23,7 @@ class App {
     }
     // Configure API endpoints.
     routes() {
-        /* This is just to get up and running, and to make sure what we've got is
-         * working so far. This function will change when we start to add more
-         * API endpoints */
-        let router = express.Router();
-        // placeholder route handler
-        router.get('/', (req, res, next) => {
-            res.json({
-                message: 'Hello World!'
-            });
-        });
-        this.express.use('/', router);
-        router.get('/api/v1/realms', (req, res, next) => {
-            res.json(['David']);
-        });
-        this.express.use('/api/v1/realms', router);
+        this.express.use('/', _1.default);
     }
 }
 exports.default = new App().express;
