@@ -1,4 +1,4 @@
-#import * as mongoose from 'mongoose';
+import * as mongoose from 'mongoose';
 import * as BPromise from 'bluebird';
 
 require('mongoose').Promise = BPromise;
