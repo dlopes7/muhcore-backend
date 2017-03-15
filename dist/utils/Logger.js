@@ -12,5 +12,8 @@ class Logger {
             console.log(chalk.gray(`[${moment().toISOString()}] DEBUG: ${msg}`));
         }
     }
+    error(msg) {
+        console.log(chalk.red(`[${moment().toISOString()}] DEBUG: ${msg}`));
+    }
 }
 exports.default = new Logger('debug');
