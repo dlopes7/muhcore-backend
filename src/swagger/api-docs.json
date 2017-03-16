@@ -1,0 +1,56 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "MuhCore backend specs",
+    "description": "MuhCore backend"
+  },
+  "basePath": "/",
+  "tags" : [
+    {"name": "Realms", 
+    "description": "Realms API"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/realms": {
+       "get": {
+          "tags": ["Realms"],
+          "description": "Gets a list of Realms",
+          "operationId": "get-realms",
+          "produces": [
+            "application/json"
+          ]
+        }
+    },
+    "/api/v1/realms/{realm_name}": {
+        "get":{
+          "tags": ["Realms"],
+          "description":"Gets a specific realm",
+          "operationId":"get-realm",
+          "produces": [
+            "application/json"
+          ],
+          "parameters":[
+              {
+                "name": "realm_name",
+                "in": "path",
+                "description": "Realm to retrieve",
+                "required": true,
+                "type": "string"
+              }
+            ]
+        }
+      
+      }
+  
+  }
+}
