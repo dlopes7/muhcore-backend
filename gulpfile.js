@@ -13,6 +13,7 @@ gulp.task('compile', () => {
 
 gulp.task('watch', ['compile'], () => {
   gulp.watch('src/**/*.ts', ['compile']);
+  gulp.watch('src/swagger/**/*', ['swagger']);
 });
 
 
@@ -21,4 +22,9 @@ gulp.task('assets', function() {
   .pipe(gulp.dest('dist'));
 });
 
-gulp.task('default', ['watch', 'assets']);
+gulp.task('swagger', function(){
+  return gulp.src(['src/swagger/**/*'])
+  .pipe(gulp.dest('dist/swagger'));
+});
+
+gulp.task('default', ['watch', 'assets', 'swagger']);
