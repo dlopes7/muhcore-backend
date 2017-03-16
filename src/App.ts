@@ -4,6 +4,7 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import Logger from './utils/logger';
 
+
 import router from './routes/'
 
 // Creates and configures an ExpressJS web server.
@@ -20,15 +21,25 @@ class App {
     this.express.set('json spaces', 2);
     this.middleware();
     this.routes();
-    
-    
+
   }
 
   // Configure Express middleware.
   private middleware(): void {
     this.express.use(logger('dev'));
     this.express.use(bodyParser.json());
-    this.express.use(bodyParser.urlencoded({ extended: false }));
+    this.express.use(bodyParser.urlencoded({
+      extended: false
+    }));
+
+
+    //Swagger
+    this.express.use(express.static('dist/swagger'));
+    this.express.get('/', function (req, res) {
+      res.sendFile(__dirname + '/swagger/index.html');
+    });
+
+
   }
 
   // Configure API endpoints.
