@@ -1,7 +1,13 @@
-import Logger from '../utils/logger';
+
 import Realm from '../models/realm';
 
-class Views {
+export class Views {
+
+    public logger: any;
+
+    constructor(app){
+        this.logger = app.logger;
+    }
 
     public getRealms(): any {
 
@@ -9,11 +15,11 @@ class Views {
             _id: 0,
             __v: 0
         }).then(docs => {
-            Logger.debug(`Retrieved ${docs.length} realms from mongo`);
+            this.logger.debug(`Retrieved ${docs.length} realms from mongo`);
             return docs;
 
         }).catch(err => {
-            Logger.error(`Error getting realms from mongo ${err}`);
+            this.logger.error(`Error getting realms from mongo ${err}`);
         });
     }
 
@@ -25,15 +31,13 @@ class Views {
             _id: 0,
             __v: 0
         }).then(doc => {
-            Logger.debug(`Retrieved the realm ${doc} from mongo`);
+            this.logger.debug(`Retrieved the realm ${doc} from mongo`);
             return doc;
 
         }).catch(err => {
-            Logger.error(`Error getting ${slug} realm from mongo ${err}`)
+            this.logger.error(`Error getting ${slug} realm from mongo ${err}`)
         });
 
     }
 
 }
-
-export default new Views();

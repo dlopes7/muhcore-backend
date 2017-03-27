@@ -1,9 +1,4 @@
-import * as mongoose from 'mongoose';
-import * as BPromise from 'bluebird';
-
-require('mongoose').Promise = BPromise;
-
-mongoose.connect('mongodb://localhost/muh_core');
+import * as mongoose from 'mongoose'
 
 
 export interface Realm extends mongoose.Document {

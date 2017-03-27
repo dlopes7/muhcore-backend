@@ -2,21 +2,37 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import Logger from './utils/logger';
+import * as Utils from './classes/utils';
+import * as Crontab from './tasks';
+
+import {Router} from './routes/'
 
 
-import router from './routes/'
+require('dotenv').config();
 
 // Creates and configures an ExpressJS web server.
 class App {
 
   // ref to Express instance
   public express: express.Application;
-
+  public logger: Utils.Logger;
+  public database: Utils.Database;
+  public router: Router;
+  public realmCrontab: Crontab.RealmCrontab;
 
   //Run configuration methods on the Express instance.
   constructor() {
-    Logger.debug('Setting up express');
+    this.logger = new Utils.Logger(this, 'debug')
+    this.logger.debug('Setting up express');
+
+    // This will connect to the mongo database
+    this.database = new Utils.Database(this);
+
+    this.router = new Router(this);
+
+    this.realmCrontab = new Crontab.RealmCrontab(this);
+    
+
     this.express = express();
     this.express.set('json spaces', 2);
     this.middleware();
@@ -44,7 +60,7 @@ class App {
 
   // Configure API endpoints.
   private routes(): void {
-    this.express.use('/', router);
+    this.express.use('/', this.router.router);
   }
 
 }
