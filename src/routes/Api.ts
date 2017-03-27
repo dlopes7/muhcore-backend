@@ -5,19 +5,14 @@ export class Api {
 
     public router: express.Router
     public views: Views;
-    public logger: any;
 
     constructor(app) {
-        this.logger = app.logger;
         this.views = new Views(this);
         this.router = express.Router();
-
-        this.setRoutes();
 
     }
 
     setRoutes() {
-        this.logger.debug('Setting API routes')
         this.router.get('/realms', (req, res, next) => {
 
             this.views.getRealms().then(viewResponse => {

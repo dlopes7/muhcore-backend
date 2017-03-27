@@ -5,8 +5,6 @@ import Realm from '../models/realm';
 
 import * as blizzard from 'blizzard.js';
 
-require('dotenv').config();
-
 export class RealmCrontab{
 
     public bnet: any;
