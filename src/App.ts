@@ -5,6 +5,7 @@ import * as bodyParser from 'body-parser';
 import * as Utils from './classes/utils';
 import * as Crontab from './tasks';
 
+import {Messaging} from './classes/Redis';
 import {Router} from './routes/'
 
 
@@ -19,11 +20,13 @@ class App {
   public database: Utils.Database;
   public router: Router;
   public realmCrontab: Crontab.RealmCrontab;
+  public messaging: Messaging;
 
   //Run configuration methods on the Express instance.
   constructor() {
     this.logger = new Utils.Logger(this, 'debug')
     this.logger.debug('Setting up express');
+    this.messaging = new Messaging(this);
 
     // This will connect to the mongo database
     this.database = new Utils.Database(this);

@@ -21,6 +21,27 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/guilds": {
+      "post": {
+          "tags": ["Guilds"],
+          "description": "Posts a guild to be processed",
+          "operationId": "post-guilds",
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {"name": "body",
+            "description": "Guild, Realm and Region to be processed",
+            "required": true,
+            "type": "Guild",
+            "paramType": "body"
+            }
+          ]
+        }
+    },
     "/api/v1/realms": {
        "get": {
           "tags": ["Realms"],

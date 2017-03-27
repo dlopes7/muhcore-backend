@@ -4,15 +4,27 @@ import { Views } from '../views'
 export class Api {
 
     public router: express.Router
+    public logger: any;
     public views: Views;
 
     constructor(app) {
+        this.logger = app.logger;
         this.views = new Views(this);
         this.router = express.Router();
+
+        this.setRoutes();
 
     }
 
     setRoutes() {
+        this.logger.debug('Setting API routes');
+        this.setRealmRoutes();
+        this.setGuildRoutes();
+        
+    }
+
+    setRealmRoutes(){
+        this.logger.debug('Setting Realm API routes');
         this.router.get('/realms', (req, res, next) => {
 
             this.views.getRealms().then(viewResponse => {
@@ -36,4 +48,12 @@ export class Api {
         });
 
     }
+    setGuildRoutes(){
+        this.logger.debug('Setting Guild API routes');
+        this.router.post('/guilds', (req, res, next) => {
+            res.json({'vai se foder': 'sim'})
+        
+        });
+    }
+
 }
