@@ -4,9 +4,17 @@ import Realm from '../models/realm';
 export class Views {
 
     public logger: any;
+    public messaging: any;
 
     constructor(app){
         this.logger = app.logger;
+        this.messaging = app.messaging;
+    }
+
+    public sendGuildToProcess(data){
+        this.logger.debug(`Sending ${data} to RSMQ process`);
+        this.messaging.addGuildToProcess(data);
+
     }
 
     public getRealms(): any {

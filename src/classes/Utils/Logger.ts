@@ -20,7 +20,7 @@ export class Logger{
         }
     }
     public error(msg): void {
-            console.log(chalk.red(`[${moment().toISOString()}] DEBUG: ${msg}`));  
+            console.log(chalk.red(`[${moment().toISOString()}] ERROR: ${msg}`));  
     }
 }
 

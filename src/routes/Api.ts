@@ -9,7 +9,7 @@ export class Api {
 
     constructor(app) {
         this.logger = app.logger;
-        this.views = new Views(this);
+        this.views = new Views(app);
         this.router = express.Router();
 
         this.setRoutes();
@@ -51,6 +51,7 @@ export class Api {
     setGuildRoutes(){
         this.logger.debug('Setting Guild API routes');
         this.router.post('/guilds', (req, res, next) => {
+            this.views.sendGuildToProcess(req);
             res.json({'vai se foder': 'sim'})
         
         });

@@ -5,6 +5,9 @@ import * as bodyParser from 'body-parser';
 import * as Utils from './classes/utils';
 import * as Crontab from './tasks';
 
+
+import {Workers} from './classes/Workers';
+
 import {Messaging} from './classes/Redis';
 import {Router} from './routes/'
 
@@ -21,6 +24,7 @@ class App {
   public router: Router;
   public realmCrontab: Crontab.RealmCrontab;
   public messaging: Messaging;
+  public workers: Workers;
 
   //Run configuration methods on the Express instance.
   constructor() {
@@ -34,6 +38,7 @@ class App {
     this.router = new Router(this);
 
     this.realmCrontab = new Crontab.RealmCrontab(this);
+    this.workers = new Workers(this);
     
 
     this.express = express();
